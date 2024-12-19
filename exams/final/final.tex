@@ -1,0 +1,324 @@
+\documentclass[12pt]{article}
+
+\include{preamble}
+
+\newtoggle{solutions}
+%\toggletrue{solutions}
+
+
+\newcommand{\logbaseten}[1]{\text{log$_{10}$}\parens{#1}}
+
+\title{Math 340 / 640 Fall \the\year{} \\ Final Examination}
+\author{Professor Adam Kapelner}
+
+\date{December 19, \the\year{}}
+
+\begin{document}
+\maketitle
+
+\noindent Full Name \line(1,0){410}
+
+\thispagestyle{empty}
+
+\section*{Code of Academic Integrity}
+
+\footnotesize
+Since the college is an academic community, its fundamental purpose is the pursuit of knowledge. Essential to the success of this educational mission is a commitment to the principles of academic integrity. Every member of the college community is responsible for upholding the highest standards of honesty at all times. Students, as members of the community, are also responsible for adhering to the principles and spirit of the following Code of Academic Integrity.
+
+Activities that have the effect or intention of interfering with education, pursuit of knowledge, or fair evaluation of a student's performance are prohibited. Examples of such activities include but are not limited to the following definitions:
+
+\paragraph{Cheating} Using or attempting to use unauthorized assistance, material, or study aids in examinations or other academic work or preventing, or attempting to prevent, another from using authorized assistance, material, or study aids. Example: using an unauthorized cheat sheet in a quiz or exam, altering a graded exam and resubmitting it for a better grade, etc.\\
+\\
+\noindent I acknowledge and agree to uphold this Code of Academic Integrity. \\~\\
+
+\begin{center}
+\line(1,0){350} ~~~ \line(1,0){100}\\
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~signature~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ date
+\end{center}
+
+\normalsize
+
+\section*{Instructions}
+This exam is 120 minutes (variable time per question) and closed-book. You are allowed \textbf{three} pages (front and back) of a \qu{cheat sheet}, blank scrap paper (provided by the proctor) and a graphing calculator (which is not your smartphone). Please read the questions carefully. Within each problem, I recommend considering the questions that are easy first and then circling back to evaluate the harder ones. No food is allowed, only drinks. %If the question reads \qu{compute,} this means the solution will be a number otherwise you can leave the answer in \textit{any} widely accepted mathematical notation which could be resolved to an exact or approximate number with the use of a computer. I advise you to skip problems marked \qu{[Extra Credit]} until you have finished the other questions on the exam, then loop back and plug in all the holes. I also advise you to use pencil. The exam is 100 points total plus extra credit. Partial credit will be granted for incomplete answers on most of the questions. \fbox{Box} in your final answers. Good luck!
+
+\pagebreak
+
+% \problem Let $X_1, X_2, \ldots \iid$ some continuous random variable with $0 < \mu < \infty$ and $0 < \sigsq < \infty$. We also use the standard notation 
+
+% \beqn
+% \Xbar_n := \oneover{n}\sum_{i=1}^n X_i ~~~~\text{and}~~~~ S^2_n := \oneover{n-1} \sum_{i=1}^n (X_i - \Xbar_n)^2.
+% \eeqn
+
+% \begin{enumerate}[(a)]
+
+
+
+% \subquestionwithpoints{3} How is the following rv approximately distributed? Provide theoretical justification for each step.
+
+% \beqn
+% \frac{n+1}{n+2} + \frac{\sqrt{n}\Xbar_n - \sqrt{n}\mu}{\sigma} \hspace{20cm} 
+% \eeqn
+
+% \iftoggle{solutions}{\inred{
+% $\braces{1,2,\ldots,9}$
+% }}{~\spc{5}}
+
+
+
+
+
+% \end{enumerate}
+
+\problem Let $X_n \sim \text{Beta}(\alpha, n\beta)$ where $n \in \naturals, \alpha > 0, \beta > 0$ and $Y_n := nX_n$.
+
+\begin{enumerate}[(a)]
+
+\subquestionwithpoints{5}  What is $f_{X_n}(x)$? Your answer must be an explicit function of $x$ without using a brand name. Don't forget the indicator function.
+
+\iftoggle{solutions}{\inred{
+\beqn
+X_n \sim f_{X_n}(x) &=& \text{Beta}(\alpha, n\beta) := \oneover{B(\alpha, n\beta)} x^{\alpha - 1} (1-x)^{n\beta-1} \indic{x \in (0,1)} 
+\eeqn 
+}}{~\spc{3}}
+
+\subquestionwithpoints{5}  What is $f_{Y_n}(y)$? Your answer must be an explicit function of $y$ without using a brand name. Simplify as much as possible as it will help for the next question. 
+
+\iftoggle{solutions}{\inred{
+\beqn
+f_{Y_n}(y) &=& \oneover{n}f_{X_n}\parens{\overn{y}} = \oneover{n} \oneover{B(\alpha, n\beta)} \tothepow{\frac{y}{n}}{\alpha - 1} \tothepow{1-\frac{y}{n}}{n\beta-1} \indic{\frac{y}{n} \in (0,1)} \\
+&=& \frac{1}{n^\alpha} \oneover{B(\alpha, n\beta)} y^{\alpha - 1} \tothepow{1-\frac{y}{n}}{n\beta} \tothepow{1-\frac{y}{n}}{-1} \indic{y \in (0,n)}
+\eeqn 
+}}{~\spc{5}}
+
+\subquestionwithpoints{7} $Y_n \convd Y$. Find$f_{Y}(y)$ by taking the limit of $f_{Y_n}(y)$. If the answer is a brand name rv, mark it and find the value(s) of its parameter(s). You will need to use the following limit to solve that we didn't prove in class:
+\beqn
+\limitn \frac{\Gammaf{\alpha + n\beta}}{n^\alpha\Gammaf{n\beta}} = \beta^\alpha
+\eeqn
+
+\iftoggle{solutions}{\inred{
+\beqn
+Y \sim f_{Y}(y) &=& \limitn f_{Y_n}(y) \\
+&=& y^{\alpha - 1} \limitn \frac{1}{n^\alpha} \oneover{B(\alpha, n\beta)} \parens{\limitn \tothepow{1-\frac{y}{n}}{n}}^\beta \tothepow{1- \limitn \frac{y}{n}}{-1}\indic{y \in \limitn (0,n)} \\
+&=& y^{\alpha - 1} \limitn \frac{\Gammaf{\alpha + n\beta}}{n^\alpha\Gammaf{n\beta}\Gammaf{\alpha}} \parens{e^{-y}}^\beta \indic{y \in (0,\infty)} \\
+&=& \oneover{\Gammaf{\alpha}} \underbrace{\limitn \frac{\Gammaf{\alpha + n\beta}}{n^\alpha\Gammaf{n\beta}}}_{\text{use hint here}} y^{\alpha - 1}  e^{-\beta y} \indic{y \in (0,\infty)} \\
+&=& \frac{\beta^\alpha}{\Gammaf{\alpha}} y^{\alpha - 1} e^{-\beta y} \indic{y \in (0,\infty)} =: \text{Gamma}(\alpha,\beta)
+\eeqn 
+}}{~\spc{5}} \pagebreak
+
+\end{enumerate}
+
+
+\problem Some theoretical problems. 
+
+\begin{enumerate}[(a)]
+
+
+% \subquestionwithpoints{3} Consider $X_1 \sim f_{X_1}(x)$ independent of $X_2 \sim f_{X_2}(x)$. Using the multivariate transformation of variables formula, find the a formula for the PDF of $R = \frac{X_1}{X_2}$. Simplify as much as possible.
+
+% \iftoggle{solutions}{\inred{
+% $\braces{1,2,\ldots,9}$
+% }}{~\spc{5}}
+
+\subquestionwithpoints{7} Let $\Xoneton \iid \gammanot{\alpha}{\beta}$ and $\X = \bracks{X_1~X_2~\ldots~X_n}^\top$, the column vector of all the $X_i$'s. Find the JDF of $\X$. Simplify as much as possible. Historical note: this is a type of standard multivariate gamma distribution. %Let $A \in \reals^{n \times n}$ and $B := A^{-1}$ to match the notation in the lecture. Find the JDF of $\Y = A\X$. Simplify as much as possible. 
+
+
+\iftoggle{solutions}{\inred{
+Since the $X_i$'s are $\iid$, the JDF is the product of the PDF's,
+
+\beqn
+f_{\X}(\x) = \prod_{i=1}^n f(x_i) &=& \prod_{i=1}^n \frac{\beta^\alpha}{\Gammaf{\alpha}} x_i^{\alpha - 1} e^{-\beta x_i} \indic{x_i > 0} \\
+&=& \frac{\beta^{n\alpha}}{\Gammaf{\alpha}^n} \tothepow{\prod_{i=1}^n x_i}{\alpha - 1} e^{-\beta \sum_{i=1}^n x_i} \prod_{i=1}^n\indic{x_i > 0} \\
+&=& \frac{\beta^{n\alpha}}{\Gammaf{\alpha}^n} \tothepow{\det{\text{diag}[\x]}}{\alpha - 1} e^{-\beta \onevec_n^\top \x} \indic{\x > 0}
+\eeqn
+
+Line 2 is sufficient for full credit.
+}}{~\spc{8}}
+
+\subquestionwithpoints{6} Let $\X$ be a $n$-dimensional vector rv whose chf is below where $\alpha, \beta$ are positive constants:
+
+\beqn
+\phi_{\X}(\t) = \tothepow{\parens{1 - \displaystyle\frac{it_1}{\beta}} \parens{1 - \displaystyle\frac{it_2}{\beta}} \cdot \ldots \cdot \parens{1 - \displaystyle\frac{it_n}{\beta}}}{-\alpha}
+\eeqn
+
+Find the distribution of $X_1$, the first element of the vector. If it is a brand name rv, specify its name and its parameter(s).
+
+\iftoggle{solutions}{\inred{
+We make use of property 9 of multivariate chf's and then property 1 of chf's.
+
+\beqn
+\phi_{X_1}(t) = \phi_{\X}\parens{\bracks{t~0~\ldots~0}^\top} = \oneover{\tothepow{1 - \frac{it}{\beta}}{\alpha}} \mathimplies X_1 \sim \gammanot{\alpha}{\beta}
+\eeqn
+}}{~\spc{5}} \pagebreak
+
+\subquestionwithpoints{7} Let $X \sim F_{a,b}$ and $Y = \half \natlog{X}$. Find the PDF of $Y$. Simplify as much as you can. Historical note: this is known as \qu{Fisher's Z distribution} which he discovered in 1924. Hint: the answer is not a standard normal.
+
+\iftoggle{solutions}{\inred{
+
+We first compute the preliminaries $y = g(x) = \half \natlog{x} \Leftrightarrow x = g^{-1}(y) = e^{2y} \Rightarrow \abss{\frac{d}{dy}\bracks{g^{-1}}} = |2e^{2y}|$ and since this is always positive, we can drop the absolute value.
+
+\beqn
+X \sim F_{a,b} := f_X(x) &=& \oneover{B\parens{\overtwo{a+b}}} \tothepow{\frac{a}{b}}{a/2}x^{a/2 - 1} \tothepow{1 + \frac{a}{b} x}{-\overtwo{a+b}} \indic{x \in (0, \infty)} \\
+f_Y(y) &=& f_X(g^{-1}(y)) \abss{\frac{d}{dy}\bracks{g^{-1}}} \\
+&=& \parens{\oneover{B\parens{\overtwo{a+b}}} \tothepow{\frac{a}{b}}{a/2}(e^{2y})^{a/2 - 1} \tothepow{1 + \frac{a}{b} (e^{2y})}{-\overtwo{a+b}} \indic{\underbrace{e^{2y} \in (0, \infty)}_{\text{implying that}~ y \in \reals}}} 2e^{2y} \\
+&=& \frac{2}{B\parens{\overtwo{a+b}}}  \tothepow{\frac{ae^{2y}}{b}}{a/2} \tothepow{1 + \frac{a}{b} e^{2y}}{-\overtwo{a+b}}
+\eeqn 
+}}{~\spc{13}}
+
+\subquestionwithpoints{5} Prove $\displaystyle \frac{B(\alpha + 1, \beta)}{B(\alpha , \beta)} = \frac{\alpha}{\alpha + \beta}$ using the properties of the gamma function.
+
+\iftoggle{solutions}{\inred{
+
+\beqn
+ \frac{B(\alpha + 1, \beta)}{B(\alpha , \beta)} = \inverse{B(\alpha, \beta)} B(\alpha + 1, \beta) &=& \frac{\Gammaf{\alpha + \beta}}{\Gammaf{\alpha}\Gammaf{\beta}} \frac{\Gammaf{\alpha + 1}\Gammaf{\beta}}{\Gammaf{\alpha + \beta + 1}} \\
+&=& \frac{\Gammaf{\alpha + \beta}}{\Gammaf{\alpha}\Gammaf{\beta}} \frac{\alpha\Gammaf{\alpha}\Gammaf{\beta}}{(\alpha + \beta)\Gammaf{\alpha + \beta }} = \frac{\alpha}{\alpha + \beta}
+\eeqn
+}}{~\spc{5}} \pagebreak
+
+\subquestionwithpoints{7} Let $Y|X = x \sim \text{Poisson}(x)$ and $X \sim \exponential{2} $. Find $p_Y(y)$ using a step-by-step derivation from scratch. Simplify enough to demonstrate that $Y$ is distributed as a brand name rv that we studied in MATH 340. Specify its name and its parameter(s). Hint: use the gamma-factorial identity and one of the gamma integral identities.
+
+
+\iftoggle{solutions}{\inred{
+
+\beqn
+p_Y(y) &=& \int_\reals \text{Poisson}(x) \exponential{2} dx \\
+&=& \int_\reals \parens{\frac{e^{-x}x^y}{y!}\indic{y \in \naturals_0}} \parens{2 e^{-2x} \indic{x > 0}} dx \\
+&=& \frac{2}{\Gammaf{y+1}}\indic{y \in \naturals_0} \int_0^\infty x^{(y+1)-1} e^{-3x} dx \\
+&=& \frac{2}{\Gammaf{y+1}}\indic{y \in \naturals_0} \frac{\Gammaf{y+1}}{3^{y+1}} \\
+&=& 2\frac{1}{3^{y+1}} \indic{y \in \naturals_0} = \tothepow{\third}{y} \frac{2}{3} \indic{y \in \naturals_0} = \text{Geom}\parens{\frac{2}{3}}
+\eeqn
+
+}}{~\spc{14}}
+
+\subquestionwithpoints{4} Let $Y|X = x \sim \exponential{x^{-1}}$ and $X \sim \gammanot{\alpha}{\beta}$. Find $\expe{Y}$. Recall that if $U \sim \exponential{\lambda}$ then $\expe{U} = 1/\lambda$.
+
+
+\iftoggle{solutions}{\inred{
+By the law of iterated expectation:
+
+\beqn
+\expe{Y} = \expesub{X}{\cexpesub{Y}{Y}{X}} = \expesub{X}{\oneover{X^{-1}}} = \expesub{X}{X} = \frac{\alpha}{\beta}
+\eeqn
+
+}}{~\spc{5}} \pagebreak
+
+
+\subquestionwithpoints{7} Let $Y|X = x \sim \binomial{n}{x}$ and $X \sim \betanot{\alpha}{\beta}$. Find $\var{Y}$. Your answer cannot be in sum form; it can only be a function $n, \alpha, \beta$ and fundamental constants. You do not need to simplify. Hints: $\expe{X} = \frac{\alpha}{\alpha+\beta}$ and $\var{X} = \displaystyle\frac{\alpha \beta }{(\alpha +\beta )^{2}(\alpha +\beta +1)}$. 
+
+
+\iftoggle{solutions}{\inred{
+By the law of total variance:
+
+\beqn
+\var{Y} &=& \expesub{X}{\cvarsub{Y}{Y}{X}} + \varsub{X}{\cexpesub{Y}{Y}{X}} \\
+&=& \expesub{X}{nX(1-X)} + \varsub{X}{nX} \\
+&=& n\parens{\expesub{X}{X} - \expesub{X}{X^2}} + n^2\varsub{X}{X} \\
+&=& n\parens{\expesub{X}{X} - \varsub{X}{X} - \expesub{X}{X}^2} + n^2\varsub{X}{X} \\
+&=& n\parens{\frac{\alpha}{\alpha+\beta} - \frac{\alpha \beta}{(\alpha +\beta )^{2}(\alpha +\beta +1)} - \squared{\frac{\alpha}{\alpha+\beta}}} + n^2\frac{\alpha \beta }{(\alpha +\beta )^{2}(\alpha +\beta +1)} \\
+&=& n\parens{\frac{\alpha^2 +\alpha\beta}{(\alpha+\beta)^2} - \frac{\alpha \beta}{(\alpha +\beta)^{2}(\alpha +\beta +1)} - \frac{\alpha^2}{(\alpha+\beta)^2}} + n^2\frac{\alpha \beta }{(\alpha +\beta )^{2}(\alpha +\beta +1)} \\
+&=& n\parens{\frac{\alpha\beta}{(\alpha+\beta)^2} - \frac{\alpha \beta}{(\alpha +\beta)^{2}(\alpha +\beta +1)}} + n^2\frac{\alpha \beta }{(\alpha +\beta )^{2}(\alpha +\beta +1)} \\
+&=& n\alpha\beta \parens{\frac{1}{(\alpha+\beta)^2} - \frac{1}{(\alpha +\beta)^{2}(\alpha +\beta +1)} + \frac{n}{(\alpha +\beta )^{2}(\alpha +\beta +1)}} \\
+&=& n\alpha\beta \parens{\frac{\alpha+\beta}{(\alpha +\beta)^{2}(\alpha +\beta +1)} + \frac{n}{(\alpha +\beta )^{2}(\alpha +\beta +1)}} \\
+&=& \frac{n\alpha\beta (\alpha+\beta + n)}{(\alpha +\beta)^{2}(\alpha +\beta +1)} \\
+\eeqn
+
+The answer is acceptable at line 5. There was no need to simplify all the way to the last line (which is \href{https://en.wikipedia.org/wiki/Beta-binomial_distribution}{Wikipedia}'s format) to get full credit.
+}}{~\spc{10}}
+
+
+\subquestionwithpoints{6} Let $X \sim F_{4, 4}$. Find the numerical value of Mode$[X]$ exactly.
+
+\iftoggle{solutions}{\inred{
+From the cheat sheet, if $Y \sim F_{a, b}$,
+
+\beqn
+f^{old}_Y(y) &\propto& y^{\overtwo{a} - 1} \tothepow{1 + \frac{a}{b}y}{-\overtwo{a + b}} = k^{old}_Y(y)
+\eeqn
+
+Thus substituting $a = 2$ and $b = 2$, we find that $k_X^{old}(x) = x \tothepow{1 + x}{-4}$. We then need to find $\text{Mode}[X] := \argmax_{x \in \support{X}} \braces{\natlog{k^{old}_X(x)}}$ by setting the derivative of the function inside of the argmax to zero and solving for the $x\in \support{X} = (0, \infty)$.
+
+\beqn
+\natlog{k^{old}_X(x)} &=& \natlog{x} - 4\natlog{1+x} \mathimplies \frac{d}{dx}\bracks{\natlog{k^{old}_X(x)}} = \oneover{x} - \frac{4}{1 + x} \seteq 0 \\
+\mathimplies 0 &=& \frac{(1 + x) - (4x)}{x(1+x)} \mathimplies 1-3x = 0 \mathimplies x_* = 1/3 = \text{Mode}[X]
+\eeqn
+}}{~\spc{4}} \pagebreak
+
+
+\subquestionwithpoints{4} If a person's wealth in a certain country is modeled by $W \sim \text{ParetoI}(1, 1.005191)$ then fill in the following sentence as best as you can. Hint: guess different values until you get something approximate.
+
+\iftoggle{solutions}{\inred{
+A ParetoI rv has the following property the people at the $a$th quantile and below owns $1-a$ proportion of the wealth in that country. The solution is found through algebra application of the formula we derived in class,
+
+\beqn
+&& 1 - \frac{\natlog{a}}{\natlog{1-a}} = \oneover{\lambda} = \oneover{1.005191} = 0.9948357 \mathimplies \frac{\natlog{a}}{\natlog{1-a}} = 0.005164261
+\eeqn 
+
+This equation is insoluble using algebra. So we use the hint. If we plug in $a=0.95$, then we get 0.0171 $>$ 0.005164261 which is too large. If we plug in $a=.99$, we get 0.00218 $<$ 0.005164261 which is too low. Trying $a=0.98$, we get the right value. Hence,\\
+
+\qu{the top \fbox{2}\% own \fbox{98}\% of the wealth in that country}.
+
+}}{~\\
+The top \line(1,0){50}\% own \line(1,0){50}\% of the wealth in that country.~\spc{5}}
+
+
+\subquestionwithpoints{6} \\
+If $X \sim \text{Weibull}(0.8, 3.7)$, circle the larger quantity. If both are the same, circle both: \\~\\
+\quad $\prob{X > 1}$ \quad or \quad \iftoggle{solutions}{\inred{\fbox{$\cprob{X > 2}{X > 1}$}}}{$\cprob{X > 2}{X > 1}$} \\~\\
+If $X \sim \text{Weibull}(1.8, 3.7)$, circle the larger quantity. If both are the same, circle both: \\~\\
+\quad \iftoggle{solutions}{\inred{\fbox{$\prob{X > 1}$}}}{$\prob{X > 1}$} \quad or \quad $\cprob{X > 2}{X > 1}$ \\~\\
+If $X \sim \text{Weibull}(1.0, 3.7)$, circle the larger quantity. If both are the same, circle both: \\~\\
+\quad \iftoggle{solutions}{\inred{\fbox{$\prob{X > 1}$}}}{$\prob{X > 1}$} \quad or \quad \iftoggle{solutions}{\inred{\fbox{$\cprob{X > 2}{X > 1}$}}}{$\cprob{X > 2}{X > 1}$}
+
+
+\subquestionwithpoints{7} Let $\Xoneton \iid $ Weibull$(k,\lambda)$. Find $F_{X_{(1)}}(x)$. Simplify until you show that $X_{(1)}$ is a brand name rv  that we studied in MATH 340, then specify its name and its parameter(s).
+
+
+\iftoggle{solutions}{\inred{
+
+Recall that $F(x) = 1 - e^{-(\lambda x)^k}$ so then using the order statistics formula, 
+
+\beqn
+&& F_{X_{(1)}}(x) = 1 - (1 - F(x))^n = 1 - \tothepow{e^{-(\lambda x)^k}}{n} = 1 - e^{-n(\lambda x)^{k}} = 1 - e^{-\Big(\overbrace{\lambda n^{1/k}}^{\text{new} ~\lambda} x\Big)^{k}} \\
+&&\mathimplies X_{(1)} \sim \text{Weibull}(k, \lambda n^{1/k})
+\eeqn
+}}{~\spc{5}} \pagebreak
+
+\subquestionwithpoints{7} Let $X \sim $ Laplace$(0,\pi)$. Let $Y = X\,|\,X > 0$. Show that $Y$ is a brand name rv that we studied in MATH 340, then specify its name and its parameter(s).
+
+
+\iftoggle{solutions}{\inred{
+
+The Laplace distribution centered at zero is an error distribution which means half the probability is above zero and half below.
+
+\beqn
+&& f_Y(y) = \frac{f_X(y) \indic{y > 0}}{\prob{X > 0}} = \frac{\oneover{2\pi} e^{-\oneover{\pi}|y|}}{\half} \indic{y > 0} = \oneover{\pi} e^{-\oneover{\pi}y} \indic{y > 0} =: \exponential{\oneover{\pi}}
+\eeqn
+
+
+}}{~\spc{8}}
+
+
+
+\subquestionwithpoints{6} Let $\X \sim \multnormnot{3}{[1 ~2 ~3]^\top}{\I_3}$. Show that $\twovec{X_2}{X_3}$ is a brand name rv that we studied in MATH 340, then specify its name and its parameter(s).
+
+
+\iftoggle{solutions}{\inred{
+
+Every subvector of a multivariate normal is itself multivariate normal with mean as the subvector of $\expe{\X}$ and variance-covariance matrix the submatrix of $\var{\X}$, so:
+
+\beqn
+\twovec{X_2}{X_3} \sim \multnormnot{2}{[2 ~3]^\top}{\I_2}
+\eeqn
+}}{~\spc{5}}
+
+
+\subquestionwithpoints{4} Fill in the two missing values in the identity below:
+
+\beqn
+\int\displaylimits^{\infty}_{\iftoggle{solutions}{\inred{1}}{}} \frac{\lambda^k}{\Gammaf{k}} x^{k-1} e^{-\lambda k} dx = \sum_{x = 0}^{{\iftoggle{solutions}{\inred{k - 1}}{}}} \frac{\lambda^x e^{-\lambda}}{x!}
+\eeqn
+
+
+
+\end{enumerate}
+
+\end{document}

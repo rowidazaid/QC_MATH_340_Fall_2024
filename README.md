@@ -22,7 +22,7 @@ My lecture notes are scanned in as PDF files contributed by myself and are found
 
 * Midterm I, Thurs, Sept 26 Midterm I [(exam)](https://github.com/kapelner/QC_MATH_340_Fall_2024/blob/main/exams/midterm1/midterm1.pdf) [(solutions)](https://github.com/kapelner/QC_MATH_340_Fall_2024/blob/main/exams/midterm1/midterm1_solutions.pdf)
 * Midterm II, Thurs, Nov 14 [(exam)](https://github.com/kapelner/QC_MATH_340_Fall_2024/blob/main/exams/midterm2/midterm2.pdf) [(solutions)](https://github.com/kapelner/QC_MATH_340_Fall_2024/blob/main/exams/midterm2/midterm2_solutions.pdf)
-* Final, Thurs, Dec 19 4-6PM KY 258
+* Final, Thurs, Dec 19 4-6PM KY 258 [(exam)](https://github.com/kapelner/QC_MATH_340_Fall_2024/blob/main/exams/final/final.pdf) [(solutions)](https://github.com/kapelner/QC_MATH_340_Fall_2024/blob/main/exams/final/final_solutions.pdf)
 
 ## Practice Exams
 
